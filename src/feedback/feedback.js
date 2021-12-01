@@ -3,12 +3,16 @@ import styles from './feedback.module.css';
 const Feedback = () => {
   return (
     <div>
-      <button>Good</button>
-      <button>Neutral</button>
-      <button>Bad</button>
+      <button onClick={onBtnClick}>Good</button>
+      <button onClick={onBtnClick}>Neutral</button>
+      <button onClick={onBtnClick}>Bad</button>
     </div>
   );
 };
+
+function onBtnClick(e) {
+  alert('Hi');
+}
 
 function Statistics(props) {
   const { id, kind, value } = props;
