@@ -1,3 +1,5 @@
+import styles from './feedback.module.css';
+
 const Feedback = () => {
   return (
     <div>
@@ -8,11 +10,15 @@ const Feedback = () => {
   );
 };
 
-// function Statistics() {
+// function Statistics(props) {
+//     const { id, kind, value } = props;
 //     return (
-//         <div>
-//             const Good =
-//         </div>
+//         <ul className={styles.statList} key={id}>
+//             <li className={styles.statItem} >
+//                 <span className={styles.statKind}>{kind}</span>
+//                 <span className={styles.statValue}>{value}</span>
+//             </li>
+//         </ul>
 //     );
 // }
 

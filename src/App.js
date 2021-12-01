@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
-import Feedback from './feedback/Feedback.js';
+import Feedback from './Feedback/Feedback.js';
 
 function App() {
   return (
