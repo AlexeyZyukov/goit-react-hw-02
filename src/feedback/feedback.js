@@ -18,8 +18,10 @@ class Feedback extends Component {
     };
   }
 
-  onGoodBtnClick = () => {
+  onGoodBtnClick = event => {
     this.setState({ Good: this.state.Good + 1 });
+    console.dir(event.currentTarget);
+    console.log(event.currentTarget.textContent);
   };
   // onGoodBtnClick = () => { //prevState - учитывает предыдущее значение аргумента. Учитывает асинхронность метода setState
   //   this.setState(prevState => {
@@ -56,19 +58,19 @@ class Feedback extends Component {
           <button onClick={this.onNeutralBtnClick}>Neutral</button>
           <button onClick={this.onBadBtnClick}>Bad</button>
         </div>
-        <ul className={styles.statsList} key={this.state.Gkey}>
+        <ul className={styles.statsList}>
           <li className={styles.statsItem}>
             <span className={styles.statskind}>Good: </span>
             <span className={styles.statsvalue}>{this.state.Good}</span>
           </li>
         </ul>
-        <ul className={styles.statsList} key={this.state.Nkey}>
+        <ul className={styles.statsList}>
           <li className={styles.statsItem}>
             <span className={styles.statskind}>Neutral: </span>
             <span className={styles.statsvalue}>{this.state.Neutral}</span>
           </li>
         </ul>
-        <ul className={styles.statsList} key={this.state.Bkey}>
+        <ul className={styles.statsList}>
           <li className={styles.statsItem}>
             <span className={styles.statskind}>Bad: </span>
             <span className={styles.statsvalue}>{this.state.Bad}</span>
