@@ -6,7 +6,7 @@ import Feedback from './Feedback/Feedback.js';
 function App() {
   return (
     <div className="App">
-      <Feedback />
+      <Feedback title="Counters" />
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
