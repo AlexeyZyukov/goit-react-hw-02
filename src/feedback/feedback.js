@@ -3,10 +3,10 @@ import { Component } from 'react';
 import styles from './feedback.module.css';
 
 class Feedback extends Component {
-  static DefaultProps = {
-    Good: number,
-    Neutral: number,
-    Bad: number,
+  static defaultProps = {
+    Good: 0,
+    Neutral: 0,
+    Bad: 0,
   };
 
   constructor() {
