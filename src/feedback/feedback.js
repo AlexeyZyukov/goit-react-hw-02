@@ -18,10 +18,12 @@ class Feedback extends Component {
     };
   }
 
+  totalCount = 0;
+
   onGoodBtnClick = event => {
     this.setState({ Good: this.state.Good + 1 });
-    console.dir(event.currentTarget);
-    console.log(event.currentTarget.textContent);
+    // console.dir(event.currentTarget);
+    // console.log(event.currentTarget.textContent);
   };
   // onGoodBtnClick = () => { //prevState - учитывает предыдущее значение аргумента. Учитывает асинхронность метода setState
   //   this.setState(prevState => {
@@ -39,15 +41,15 @@ class Feedback extends Component {
   };
 
   countTotalFeedback = () => {
-    const totalCount = {
-      count: this.state.Good + this.state.Neutral + this.state.Bad,
-    };
-    return totalCount.count;
+    this.totalCount = this.state.Good + this.state.Neutral + this.state.Bad;
+    return this.totalCount;
   };
-  // countPositiveFeedbackPercentage = () => {
-  //   const positiveResult = { positive: `{${this.state.Good} / ${countTotalFeedback}}` }
-  //   console.log(positiveResult);
-  // }
+  countPositivePercentage = () => {
+    let positivePercentage = '';
+    positivePercentage = (this.state.Good / this.totalCount) * 100;
+    console.log(positivePercentage);
+    return positivePercentage;
+  };
 
   render() {
     return (
@@ -80,6 +82,13 @@ class Feedback extends Component {
           <li>
             <span>Total: </span>
             <span>{this.countTotalFeedback()}</span>
+          </li>
+          <li>
+            <span>Positive: </span>
+            <span>
+              {Math.round(this.countPositivePercentage())}
+              <span> %</span>
+            </span>
           </li>
         </ul>
       </>

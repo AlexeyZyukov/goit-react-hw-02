@@ -1,12 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 
-import Feedback from './Feedback/Feedback.js';
+import Feedback from './feedback/Feedback.js';
 
 function App() {
   return (
     <div className="App">
-      <Feedback title="Counters" />
+      <Feedback title="Statistics" />
     </div>
   );
 }
