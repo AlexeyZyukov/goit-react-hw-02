@@ -5,19 +5,9 @@ class Feedback extends Component {
   constructor() {
     super();
     this.state = {
-      key: 1,
       Good: 0,
       Neutral: 0,
       Bad: 0,
-    };
-  }
-
-  get value() {
-    return this.value;
-  }
-  set value(newValue) {
-    this.value = {
-      value: newValue,
     };
   }
 
@@ -33,10 +23,22 @@ class Feedback extends Component {
 
   onNeutralBtnClick = () => {
     this.setState({ Neutral: this.state.Neutral + 1 });
+    console.log(this.state.Neutral);
   };
   onBadBtnClick = () => {
     this.setState({ Bad: this.state.Bad + 1 });
   };
+
+  countTotalFeedback = () => {
+    const totalCount = {
+      count: this.state.Good + this.state.Neutral + this.state.Bad,
+    };
+    return totalCount.count;
+  };
+  // countPositiveFeedbackPercentage = () => {
+  //   const positiveResult = { positive: `{${this.state.Good} / ${countTotalFeedback}}` }
+  //   console.log(positiveResult);
+  // }
 
   render() {
     return (
@@ -63,6 +65,12 @@ class Feedback extends Component {
           <li className={styles.statsItem}>
             <span className={styles.statskind}>Bad: </span>
             <span className={styles.statsvalue}>{this.state.Bad}</span>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <span>Total: </span>
+            <span>{this.countTotalFeedback()}</span>
           </li>
         </ul>
       </>
