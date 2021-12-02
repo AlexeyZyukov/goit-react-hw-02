@@ -1,7 +1,14 @@
+import { number } from 'prop-types';
 import { Component } from 'react';
 import styles from './feedback.module.css';
 
 class Feedback extends Component {
+  static DefaultProps = {
+    Good: number,
+    Neutral: number,
+    Bad: number,
+  };
+
   constructor() {
     super();
     this.state = {
