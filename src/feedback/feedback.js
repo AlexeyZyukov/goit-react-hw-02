@@ -34,7 +34,6 @@ class Feedback extends Component {
 
   onNeutralBtnClick = () => {
     this.setState({ Neutral: this.state.Neutral + 1 });
-    console.log(this.state.Neutral);
   };
   onBadBtnClick = () => {
     this.setState({ Bad: this.state.Bad + 1 });
