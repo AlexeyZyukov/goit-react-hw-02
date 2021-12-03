@@ -24,7 +24,7 @@ class Feedback extends Component {
 
   constructor(props) {
     super(props);
-    // this.state = {};
+    // this.state = {}; //динамическое формирование state из массива данных CONFIG. Может быть использовано в дальнейшем.
     // CONFIG_DATA.forEach(item => {
     //   this.state[item.key] = 0;
     // });
