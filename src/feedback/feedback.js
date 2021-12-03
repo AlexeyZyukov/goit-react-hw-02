@@ -20,10 +20,14 @@ class Feedback extends Component {
 
   totalCount = 0;
 
-  onGoodBtnClick = event => {
-    this.setState({ Good: this.state.Good + 1 });
-    // console.dir(event.currentTarget);
-    // console.log(event.currentTarget.textContent);
+  onBtnClick = event => {
+    // console.dir(event.target);
+    // const tagretName = event.target.textContent
+    this.setState({
+      [event.target.textContent]: this.state[event.target.textContent] + 1,
+    });
+    // console.log('event.currentTarget: ', event.currentTarget);
+    // console.log('event.currentTarget.textContent: ', tagretName);
   };
   // onGoodBtnClick = () => { //prevState - учитывает предыдущее значение аргумента. Учитывает асинхронность метода setState
   //   this.setState(prevState => {
@@ -31,13 +35,6 @@ class Feedback extends Component {
   //   })
   //   console.log('value: ', this.state.value)
   // }
-
-  onNeutralBtnClick = () => {
-    this.setState({ Neutral: this.state.Neutral + 1 });
-  };
-  onBadBtnClick = () => {
-    this.setState({ Bad: this.state.Bad + 1 });
-  };
 
   countTotalFeedback = () => {
     this.totalCount = this.state.Good + this.state.Neutral + this.state.Bad;
@@ -55,9 +52,9 @@ class Feedback extends Component {
       <>
         <div>
           <h2>{this.props.title}</h2>
-          <button onClick={this.onGoodBtnClick}>Good</button>
-          <button onClick={this.onNeutralBtnClick}>Neutral</button>
-          <button onClick={this.onBadBtnClick}>Bad</button>
+          <button onClick={this.onBtnClick}>Good</button>
+          <button onClick={this.onBtnClick}>Neutral</button>
+          <button onClick={this.onBtnClick}>Bad</button>
         </div>
         <ul className={styles.statsList}>
           <li className={styles.statsItem}>
