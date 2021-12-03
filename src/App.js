@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import PropTypes from 'prop-types';
 import './App.css';
 
 import Feedback from './feedback/Feedback.js';
@@ -11,4 +12,7 @@ function App() {
   );
 }
 
+App.propTypes = {
+  title: PropTypes.string,
+};
 export default App;

@@ -24,23 +24,23 @@ class Feedback extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
-    CONFIG_DATA.forEach(item => {
-      this.state[item.key] = 0;
-    });
-    // this.state = {
-    //   Good: 0,
-    //   Neutral: 0,
-    //   Bad: 0,
-    // };
+    // this.state = {};
+    // CONFIG_DATA.forEach(item => {
+    //   this.state[item.key] = 0;
+    // });
+    this.state = {
+      Good: 0,
+      Neutral: 0,
+      Bad: 0,
+    };
   }
 
   totalCount = 0;
 
   onBtnClick = event => {
     // console.dir(event.target);
-    console.log(event.target.textContent);
-    console.log(Object.keys(this.state)[0]);
+    // console.log(event.target.textContent);
+    // console.log(Object.keys(this.state)[0]);
     this.setState({
       [event.target.textContent]: this.state[event.target.textContent] + 1,
     });
@@ -55,17 +55,14 @@ class Feedback extends Component {
   // }
 
   countTotalFeedback = () => {
-    this.totalCount = this.state.Good + this.state.Neutral + this.state.Bad;
-    // console.log(this.state.Good);
-    // console.log(this.state.Neutral);
-    // console.log(this.state.Bad);
-    // console.log(this.totalCount);
+    const { Good, Neutral, Bad } = this.state;
+    this.totalCount = Good + Neutral + Bad;
     return this.totalCount;
   };
   countPositivePercentage = () => {
     const positivePercentage =
       Math.round(this.state.Good / this.totalCount) * 100;
-    // console.log(positivePercentage);
+    console.log(this.state.Good);
     return positivePercentage;
   };
 
@@ -73,22 +70,27 @@ class Feedback extends Component {
     return (
       <>
         <div>
-          <h2>{this.props.title}</h2>
-          {/* <button onClick={this.onBtnClick}>Good</button> */}
-          <button onClick={this.onBtnClick}>
+          {this.props.title && <h2>{this.props.title}</h2>}
+          <button onClick={this.onBtnClick}>Good</button>
+          {/* <button onClick={this.onBtnClick}>
             {Object.keys(this.state)[0]}
-          </button>
+          </button> */}
           <button onClick={this.onBtnClick}>Neutral</button>
           <button onClick={this.onBtnClick}>Bad</button>
         </div>
         <div>
-          <ul className={styles.statsList}>
-            <li className={styles.statsItem}>
-              <span className={styles.statskind}>Good: </span>
-              <span className={styles.statsvalue}>{this.state.Good}</span>
-            </li>
-          </ul>
-          <ul className={styles.statsList}>
+          {CONFIG_DATA.map(item => (
+            <ul className={styles.statsList}>
+              <li className={styles.statsItem}>
+                <span className={styles.statskind}>{item.key}: </span>
+                <span className={styles.statsvalue}>
+                  {this.state[item.key]}
+                </span>
+              </li>
+            </ul>
+          ))}
+
+          {/* <ul className={styles.statsList}>
             <li className={styles.statsItem}>
               <span className={styles.statskind}>Neutral: </span>
               <span className={styles.statsvalue}>{this.state.Neutral}</span>
@@ -99,7 +101,7 @@ class Feedback extends Component {
               <span className={styles.statskind}>Bad: </span>
               <span className={styles.statsvalue}>{this.state.Bad}</span>
             </li>
-          </ul>
+          </ul> */}
           <ul>
             <li>
               <span>Total: </span>
