@@ -42,7 +42,7 @@ class Feedback extends Component {
   };
   countPositivePercentage = () => {
     let positivePercentage = '';
-    positivePercentage = (this.state.Good / this.totalCount) * 100;
+    positivePercentage = Math.round(this.state.Good / this.totalCount) * 100;
     console.log(positivePercentage);
     return positivePercentage;
   };
@@ -82,7 +82,7 @@ class Feedback extends Component {
           <li>
             <span>Positive: </span>
             <span>
-              {Math.round(this.countPositivePercentage())}
+              {this.countPositivePercentage()}
               <span> %</span>
             </span>
           </li>
