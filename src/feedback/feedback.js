@@ -75,17 +75,19 @@ class Feedback extends Component {
         <div>
           {this.props.title && <h2>{this.props.title}</h2>}
           {CONFIG_DATA.map(item => (
-            <button onClick={this.onBtnClick}>{item.key}</button>
+            <button key={item.key} onClick={this.onBtnClick}>
+              {item.key}
+            </button>
           ))}
         </div>
         {this.state.Good || this.state.Neutral || this.state.Bad ? (
           <Fragment>
             <div>
               {CONFIG_DATA.map(item => (
-                <ul className={styles.statsList}>
+                <ul key={item.key} className={styles.statsList}>
                   <li className={styles.statsItem}>
-                    <span className={styles.statskind}>{item.key}: </span>
-                    <span className={styles.statsvalue}>
+                    <span className={styles.statsKind}>{item.key}: </span>
+                    <span className={styles.statsValue}>
                       {this.state[item.key]}
                     </span>
                   </li>
