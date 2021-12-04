@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-expressions */
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 import { Component } from 'react';
 
 import styles from './feedback.module.css';
@@ -24,10 +26,10 @@ class Feedback extends Component {
 
   constructor(props) {
     super(props);
-    // this.state = {}; //динамическое формирование state из массива данных CONFIG. Может быть использовано в дальнейшем.
+    // this.state = {};
     // CONFIG_DATA.forEach(item => {
     //   this.state[item.key] = 0;
-    // });
+    // }); //динамическое формирование state из массива данных CONFIG. Может быть использовано в дальнейшем. Позволяет динамически добавлять данные в state.
     this.state = {
       Good: 0,
       Neutral: 0,
@@ -35,15 +37,17 @@ class Feedback extends Component {
     };
   }
 
-  totalCount = 0;
+  totalCount = '';
 
   onBtnClick = event => {
-    // console.dir(event.target);
-    // console.log(event.target.textContent);
-    // console.log(Object.keys(this.state)[0]);
     this.setState({
       [event.target.textContent]: this.state[event.target.textContent] + 1,
     });
+    console.log(
+      `${event.target.textContent}`,
+      this.state[event.target.textContent],
+    );
+    console.log('total: ', this.totalCount);
     // console.log('event.currentTarget: ', event.currentTarget);
     // console.log('event.currentTarget.textContent: ', tagretName);
   };
@@ -60,63 +64,52 @@ class Feedback extends Component {
     return this.totalCount;
   };
   countPositivePercentage = () => {
-    const positivePercentage =
-      Math.round(this.state.Good / this.totalCount) * 100;
-    console.log(this.state.Good);
+    const { Good } = this.state;
+    const positivePercentage = Math.round((Good / this.totalCount) * 100);
     return positivePercentage;
   };
 
   render() {
     return (
-      <>
+      <Fragment>
         <div>
           {this.props.title && <h2>{this.props.title}</h2>}
-          <button onClick={this.onBtnClick}>Good</button>
-          {/* <button onClick={this.onBtnClick}>
-            {Object.keys(this.state)[0]}
-          </button> */}
-          <button onClick={this.onBtnClick}>Neutral</button>
-          <button onClick={this.onBtnClick}>Bad</button>
-        </div>
-        <div>
           {CONFIG_DATA.map(item => (
-            <ul className={styles.statsList}>
-              <li className={styles.statsItem}>
-                <span className={styles.statskind}>{item.key}: </span>
-                <span className={styles.statsvalue}>
-                  {this.state[item.key]}
-                </span>
-              </li>
-            </ul>
+            <button onClick={this.onBtnClick}>{item.key}</button>
           ))}
-
-          {/* <ul className={styles.statsList}>
-            <li className={styles.statsItem}>
-              <span className={styles.statskind}>Neutral: </span>
-              <span className={styles.statsvalue}>{this.state.Neutral}</span>
-            </li>
-          </ul>
-          <ul className={styles.statsList}>
-            <li className={styles.statsItem}>
-              <span className={styles.statskind}>Bad: </span>
-              <span className={styles.statsvalue}>{this.state.Bad}</span>
-            </li>
-          </ul> */}
-          <ul>
-            <li>
-              <span>Total: </span>
-              <span>{this.countTotalFeedback()}</span>
-            </li>
-            <li>
-              <span>Positive: </span>
-              <span>
-                {this.countPositivePercentage()}
-                <span> %</span>
-              </span>
-            </li>
-          </ul>
         </div>
-      </>
+        {this.state.Good || this.state.Neutral || this.state.Bad ? (
+          <Fragment>
+            <div>
+              {CONFIG_DATA.map(item => (
+                <ul className={styles.statsList}>
+                  <li className={styles.statsItem}>
+                    <span className={styles.statskind}>{item.key}: </span>
+                    <span className={styles.statsvalue}>
+                      {this.state[item.key]}
+                    </span>
+                  </li>
+                </ul>
+              ))}
+              <ul>
+                <li>
+                  <span>Total: </span>
+                  <span>{this.countTotalFeedback()}</span>
+                </li>
+                <li>
+                  <span>Positive: </span>
+                  <span>
+                    {this.countPositivePercentage()}
+                    <span> %</span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </Fragment>
+        ) : (
+          `There is no feedback`
+        )}
+      </Fragment>
     );
   }
 }
