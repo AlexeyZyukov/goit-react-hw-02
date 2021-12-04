@@ -3,19 +3,9 @@ import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 import { Component } from 'react';
 
-import styles from './feedback.module.css';
+import { CONFIG_DATA } from './CONFIG_DATA';
 
-const CONFIG_DATA = [
-  {
-    key: 'Good',
-  },
-  {
-    key: 'Neutral',
-  },
-  {
-    key: 'Bad',
-  },
-];
+import styles from './feedback.module.css';
 
 class Feedback extends Component {
   // static defaultProps = {
@@ -82,16 +72,16 @@ class Feedback extends Component {
         </div>
         {this.state.Good || this.state.Neutral || this.state.Bad ? (
           <Fragment>
-            <div>
+            <ul>
               {CONFIG_DATA.map(item => (
-                <ul key={item.key} className={styles.statsList}>
+                <Fragment key={item.key}>
                   <li className={styles.statsItem}>
                     <span className={styles.statsKind}>{item.key}: </span>
                     <span className={styles.statsValue}>
                       {this.state[item.key]}
                     </span>
                   </li>
-                </ul>
+                </Fragment>
               ))}
               <ul>
                 <li>
@@ -106,7 +96,7 @@ class Feedback extends Component {
                   </span>
                 </li>
               </ul>
-            </div>
+            </ul>
           </Fragment>
         ) : (
           `There is no feedback`
