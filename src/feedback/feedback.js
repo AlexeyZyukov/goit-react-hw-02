@@ -4,6 +4,7 @@ import { Fragment } from 'react';
 import { Component } from 'react';
 
 import styles from './feedback.module.css';
+import FeedbackOptions from './FeedbackOptions';
 
 class Feedback extends Component {
   // static defaultProps = {
@@ -43,6 +44,8 @@ class Feedback extends Component {
     return total ? Math.round((Good / total) * 100) : 0;
   };
 
+  arrayState = Object.keys(this.state);
+
   render() {
     const total = this.countTotalFeedback();
     const arrFrmState = Object.keys(this.state);
@@ -50,19 +53,12 @@ class Feedback extends Component {
 
     return (
       <Fragment>
-        <div>
-          {this.props.title && <h2>{this.props.title}</h2>}
-          {arrFrmState.map(item => (
-            <button
-              type="button"
-              key={item}
-              onClick={this.onBtnClick}
-              className={item}
-            >
-              {item}
-            </button>
-          ))}
-        </div>
+        {this.props.title && <h2>{this.props.title}</h2>}
+        <FeedbackOptions
+          arrayFrmState={this.arrayState}
+          onClick={this.onBtnClick}
+        />
+
         {total !== 0 ? (
           <Fragment>
             <ul>
