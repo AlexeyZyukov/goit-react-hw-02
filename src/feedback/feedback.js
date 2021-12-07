@@ -13,8 +13,8 @@ class Feedback extends Component {
   //   Bad: 0,
   // };
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       Good: 0,
       Neutral: 0,
@@ -54,10 +54,20 @@ class Feedback extends Component {
     return (
       <Fragment>
         {this.props.title && <h2>{this.props.title}</h2>}
+
         <FeedbackOptions
-          arrayFrmState={this.arrayState}
-          onClick={this.onBtnClick}
+          arrayFromState={this.arrayState}
+          onClickFn={this.onBtnClick}
         />
+
+        {/* <div>
+            {Object.keys(this.state).map(item => (
+              <button type="button" key={item}
+                onClick={this.onBtnClick} className={item}>
+                {item}
+              </button>
+            ))}
+        </div> */}
 
         {total !== 0 ? (
           <Fragment>
@@ -66,9 +76,7 @@ class Feedback extends Component {
                 <Fragment key={item}>
                   <li className={styles.statsItem}>
                     <span className={styles.statsKind}>{item}: </span>
-                    <span className={styles.statsValue}>
-                      {this.state[item]}
-                    </span>
+                    <span className={styles.statsValue}>{[item]}</span>
                   </li>
                 </Fragment>
               ))}

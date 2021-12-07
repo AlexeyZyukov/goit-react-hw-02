@@ -2,12 +2,12 @@ import React from 'react';
 import { Fragment } from 'react';
 import styles from './feedback.module.css';
 
-const Statistics = ({ totalFeedback, positiveFeedback, arrOfState }) => {
+const Statistics = ({ totalFeedback, positiveFeedback, arrayFrmState }) => {
   <div>
     {totalFeedback !== 0 ? (
       <Fragment>
         <ul>
-          {arrOfState.map(item => (
+          {arrayFrmState.map(item => (
             <Fragment key={item}>
               <li className={styles.statsItem}>
                 <span className={styles.statsKind}>{item}: </span>

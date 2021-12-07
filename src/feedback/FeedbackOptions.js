@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './feedback.module.css';
 
-const FeedbackOptions = ({ arrayFrmState, onClick }) => {
+const FeedbackOptions = ({ arrayFromState, onClickFn }) => {
   <div>
-    {arrayFrmState.map(item => (
-      <button type="button" key={item} onClick={onClick} className={item}>
+    {arrayFromState.map(item => (
+      <button type="button" key={item} onClick={onClickFn} className={item}>
         {item}
       </button>
     ))}

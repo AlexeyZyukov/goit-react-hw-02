@@ -2,13 +2,16 @@ import logo from './logo.svg';
 import PropTypes from 'prop-types';
 import './App.css';
 
+import ErrorBoundary from './bugFinder';
 import Feedback from './feedback/Feedback.js';
 
 function App() {
   return (
-    <div className="App">
-      <Feedback title="Statistics" />
-    </div>
+    <ErrorBoundary>
+      <div className="App">
+        <Feedback title="Statistics" />
+      </div>
+    </ErrorBoundary>
   );
 }
 
