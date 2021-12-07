@@ -5,6 +5,7 @@ import { Component } from 'react';
 
 import styles from './feedback.module.css';
 import FeedbackOptions from './FeedbackOptions';
+import Statistics from './Statistics';
 
 class Feedback extends Component {
   // static defaultProps = {
@@ -47,9 +48,9 @@ class Feedback extends Component {
   arrayState = Object.keys(this.state);
 
   render() {
-    const total = this.countTotalFeedback();
-    const arrFrmState = Object.keys(this.state);
-    console.log(arrFrmState);
+    // const total = this.countTotalFeedback();
+    // const arrFrmState = Object.keys(this.state);
+    // console.log(arrFrmState);
 
     return (
       <Fragment>
@@ -69,7 +70,13 @@ class Feedback extends Component {
             ))}
         </div> */}
 
-        {total !== 0 ? (
+        <Statistics
+          totalFeedback={this.countTotalFeedback()}
+          positiveFeedback={this.countPositiveFeedbackPercentage}
+          arrayFrmState={this.arrayState}
+        />
+
+        {/* {total !== 0 ? (
           <Fragment>
             <ul>
               {arrFrmState.map(item => (
@@ -97,7 +104,7 @@ class Feedback extends Component {
           </Fragment>
         ) : (
           `There is no feedback`
-        )}
+        )} */}
       </Fragment>
     );
   }
