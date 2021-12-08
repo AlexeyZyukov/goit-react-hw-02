@@ -9,17 +9,17 @@ import Statistics from './Statistics';
 
 class Feedback extends Component {
   static PropsTypes = {
-    Good: PropTypes.number,
-    Neutral: PropTypes.number,
-    Bad: PropTypes.number,
+    good: PropTypes.number,
+    neutral: PropTypes.number,
+    bad: PropTypes.number,
   };
 
   constructor() {
     super();
     this.state = {
-      Good: 0,
-      Neutral: 0,
-      Bad: 0,
+      good: 0,
+      neutral: 0,
+      bad: 0,
     };
   }
 
@@ -40,9 +40,9 @@ class Feedback extends Component {
     return Object.values(this.state).reduce((acc, value) => acc + value, 0);
   };
   countPositiveFeedbackPercentage = () => {
-    const { Good } = this.state;
+    const { good } = this.state;
     const total = this.countTotalFeedback();
-    return total ? Math.round((Good / total) * 100) : 0;
+    return total ? Math.round((good / total) * 100) : 0;
   };
 
   render() {
