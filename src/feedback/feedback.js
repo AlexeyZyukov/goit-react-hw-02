@@ -53,20 +53,22 @@ class Feedback extends Component {
     // const total = this.countTotalFeedback();
 
     return (
-      <Fragment className={styles.wrapper}>
-        {this.props.title && <h2>{this.props.title}</h2>}
+      <Fragment>
+        <div className={styles.wrapper}>
+          {this.props.title && <h2>{this.props.title}</h2>}
 
-        <FeedbackOptions
-          arrayFromState={arrayState}
-          onClickFn={this.onBtnClick}
-        />
+          <FeedbackOptions
+            arrayFromState={arrayState}
+            onClickFn={this.onBtnClick}
+          />
 
-        <Statistics
-          totalFeedback={this.countTotalFeedback()}
-          positiveFeedback={this.countPositiveFeedbackPercentage()}
-          arrayFromState={arrayState}
-          actualState={this.state}
-        />
+          <Statistics
+            totalFeedback={this.countTotalFeedback()}
+            positiveFeedback={this.countPositiveFeedbackPercentage()}
+            arrayFromState={arrayState}
+            actualState={this.state}
+          />
+        </div>
       </Fragment>
     );
   }
