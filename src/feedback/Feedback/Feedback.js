@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 import { Component } from 'react';
+import Section from '../Section/Section';
 
 import styles from '../feedback.module.css';
 import FeedbackOptions from '../FeedbackOptions/FeedbackOptions';
@@ -14,8 +15,8 @@ class Feedback extends Component {
     bad: PropTypes.number,
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       good: 0,
       neutral: 0,
@@ -49,19 +50,21 @@ class Feedback extends Component {
     return (
       <Fragment>
         <div className={styles.wrapper}>
-          {this.props.title && <h2>{this.props.title}</h2>}
+          <Section title="Please leave feedback">
+            <FeedbackOptions
+              arrayFromState={Object.keys(this.state)}
+              onClickFn={this.onBtnClick}
+            />
+          </Section>
 
-          <FeedbackOptions
-            arrayFromState={Object.keys(this.state)}
-            onClickFn={this.onBtnClick}
-          />
-
-          <Statistics
-            totalFeedback={this.countTotalFeedback()}
-            positiveFeedback={this.countPositiveFeedbackPercentage()}
-            arrayFromStateEntry={Object.entries(this.state)}
-            message="There is no feedback"
-          />
+          <Section title="Statistics">
+            <Statistics
+              totalFeedback={this.countTotalFeedback()}
+              positiveFeedback={this.countPositiveFeedbackPercentage()}
+              arrayFromStateEntry={Object.entries(this.state)}
+              message="There is no feedback"
+            />
+          </Section>
         </div>
       </Fragment>
     );
