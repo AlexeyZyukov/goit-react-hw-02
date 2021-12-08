@@ -8,18 +8,18 @@ import FeedbackOptions from './FeedbackOptions';
 import Statistics from './Statistics';
 
 class Feedback extends Component {
-  // static defaultProps = {
-  //   good: 0,
-  //   neutral: 0,
-  //   bad: 0,
-  // };
+  static PropsTypes = {
+    Good: PropTypes.number,
+    Neutral: PropTypes.number,
+    Bad: PropTypes.number,
+  };
 
   constructor() {
     super();
     this.state = {
-      good: 0,
-      neutral: 0,
-      bad: 0,
+      Good: 0,
+      Neutral: 0,
+      Bad: 0,
     };
   }
 
@@ -38,19 +38,16 @@ class Feedback extends Component {
   countTotalFeedback = () => {
     console.log('Object.values(this.state): ', Object.values(this.state));
     return Object.values(this.state).reduce((acc, value) => acc + value, 0);
-    // const { good, neutral, bad } = this.state;
-    // return good + neutral + bad;
   };
   countPositiveFeedbackPercentage = () => {
-    const { good } = this.state;
+    const { Good } = this.state;
     const total = this.countTotalFeedback();
-    return total ? Math.round((good / total) * 100) : 0;
+    return total ? Math.round((Good / total) * 100) : 0;
   };
-
-  // arrayState = Object.keys(this.state);
 
   render() {
     const arrayState = Object.keys(this.state);
+    // const actualState = this.state;
     const total = this.countTotalFeedback();
     console.log('arrayState: ', arrayState);
 
@@ -63,29 +60,29 @@ class Feedback extends Component {
           onClickFn={this.onBtnClick}
         />
 
-        {/* <div>
-            {Object.keys(this.state).map(item => (
-              <button type="button" key={item}
-                onClick={this.onBtnClick} className={item}>
-                {item}
-              </button>
-            ))}
-        </div> */}
-
-        {/* <Statistics
+        <Statistics
           totalFeedback={this.countTotalFeedback()}
-          positiveFeedback={this.countPositiveFeedbackPercentage}
-          arrayFrmState={this.arrayState}
-        /> */}
+          positiveFeedback={this.countPositiveFeedbackPercentage()}
+          arrayFromState={arrayState}
+          actualState={this.state}
+        />
+      </Fragment>
+    );
+  }
+}
 
-        {total !== 0 ? (
+export default Feedback;
+
+// eslint-disable-next-line no-lone-blocks
+{
+  /* {total !== 0 ? (
           <Fragment>
             <ul>
               {arrayState.map(item => (
                 <Fragment key={item}>
                   <li className={styles.statsItem}>
                     <span className={styles.statsKind}>{item}: </span>
-                    <span className={styles.statsValue}>{[item]}</span>
+                    <span className={styles.statsValue}>{this.state[item]}</span>
                   </li>
                 </Fragment>
               ))}
@@ -106,10 +103,5 @@ class Feedback extends Component {
           </Fragment>
         ) : (
           `There is no feedback`
-        )}
-      </Fragment>
-    );
-  }
+        )} */
 }
-
-export default Feedback;

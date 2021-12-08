@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './feedback.module.css';
 
-const FeedbackOptions = ({ arrayFromState, onClickFn }) => {
+const FeedbackOptions = ({ arrayFromState, onClickFn }) => (
   <div>
     {arrayFromState.map(item => (
-      <button type="button" key={item} onClick={onClickFn} className={item}>
+      <button type="button" className={item} key={item} onClick={onClickFn}>
         {item}
       </button>
     ))}
-  </div>;
-};
+  </div>
+);
 
 export default FeedbackOptions;
