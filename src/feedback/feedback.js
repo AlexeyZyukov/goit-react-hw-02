@@ -47,12 +47,13 @@ class Feedback extends Component {
 
   render() {
     const arrayState = Object.keys(this.state);
-    // const actualState = this.state;
-    const total = this.countTotalFeedback();
     console.log('arrayState: ', arrayState);
+    const actualState = this.state;
+    console.log(actualState);
+    // const total = this.countTotalFeedback();
 
     return (
-      <Fragment>
+      <Fragment className={styles.wrapper}>
         {this.props.title && <h2>{this.props.title}</h2>}
 
         <FeedbackOptions
