@@ -1,23 +1,24 @@
 import React from 'react';
 import { Fragment } from 'react';
-import styles from './feedback.module.css';
+import Notification from '../Notification/notification';
+import styles from '../feedback.module.css';
 
 const Statistics = ({
   totalFeedback,
   positiveFeedback,
-  arrayFromState,
-  actualState,
+  arrayFromStateEntry,
+  message,
 }) => {
   return (
     <div>
       {totalFeedback !== 0 ? (
         <Fragment>
           <ul>
-            {arrayFromState.map(item => (
-              <Fragment key={item}>
+            {arrayFromStateEntry.map(item => (
+              <Fragment key={item[0]}>
                 <li className={styles.statsItem}>
-                  <span className={styles.statsKind}>{item}: </span>
-                  <span className={styles.statsValue}>{actualState[item]}</span>
+                  <span className={styles.statsKind}>{item[0]}: </span>
+                  <span className={styles.statsValue}>{item[1]}</span>
                 </li>
               </Fragment>
             ))}
@@ -37,7 +38,7 @@ const Statistics = ({
           </ul>
         </Fragment>
       ) : (
-        `There is no feedback`
+        <Notification message={message} />
       )}
     </div>
   );

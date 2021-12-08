@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 import { Component } from 'react';
 
-import styles from './feedback.module.css';
-import FeedbackOptions from './FeedbackOptions';
-import Statistics from './Statistics';
+import styles from '../feedback.module.css';
+import FeedbackOptions from '../FeedbackOptions/FeedbackOptions';
+import Statistics from '../Statistics/Statistics';
 
 class Feedback extends Component {
   static PropsTypes = {
@@ -46,27 +46,21 @@ class Feedback extends Component {
   };
 
   render() {
-    const arrayState = Object.keys(this.state);
-    console.log('arrayState: ', arrayState);
-    const actualState = this.state;
-    console.log(actualState);
-    // const total = this.countTotalFeedback();
-
     return (
       <Fragment>
         <div className={styles.wrapper}>
           {this.props.title && <h2>{this.props.title}</h2>}
 
           <FeedbackOptions
-            arrayFromState={arrayState}
+            arrayFromState={Object.keys(this.state)}
             onClickFn={this.onBtnClick}
           />
 
           <Statistics
             totalFeedback={this.countTotalFeedback()}
             positiveFeedback={this.countPositiveFeedbackPercentage()}
-            arrayFromState={arrayState}
-            actualState={this.state}
+            arrayFromStateEntry={Object.entries(this.state)}
+            message="There is no feedback"
           />
         </div>
       </Fragment>

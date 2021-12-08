@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './feedback.module.css';
+import styles from '../feedback.module.css';
 
 const FeedbackOptions = ({ arrayFromState, onClickFn }) => (
   <div>
