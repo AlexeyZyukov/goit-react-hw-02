@@ -13,16 +13,32 @@ const Statistics = ({
     <div>
       {totalFeedback !== 0 ? (
         <Fragment>
-          <ul>
+          <ul className={styles.statistics}>
             {arrayFromStateEntry.map(item => (
               <Fragment key={item[0]}>
-                <li className={styles.statsItem}>
+                {/* <li className={styles.statsItem}>
                   <span className={styles.statsKind}>{item[0]}: </span>
                   <span className={styles.statsValue}>{item[1]}</span>
-                </li>
+                </li> */}
+                <tbody className={styles.table}>
+                  <tr className={styles.row}>
+                    <td>{item[0]}: </td>
+                    <td>{item[1]}</td>
+                  </tr>
+                </tbody>
               </Fragment>
             ))}
-            <ul>
+            <tbody className={styles.table}>
+              <tr>
+                <td>Total: </td>
+                <td>{totalFeedback}</td>
+              </tr>
+              <tr>
+                <td>Positive feedback: </td>
+                <td>{positiveFeedback} %</td>
+              </tr>
+            </tbody>
+            {/* <ul>
               <li>
                 <span>Total: </span>
                 <span>{totalFeedback}</span>
@@ -34,7 +50,7 @@ const Statistics = ({
                   <span> %</span>
                 </span>
               </li>
-            </ul>
+            </ul> */}
           </ul>
         </Fragment>
       ) : (
