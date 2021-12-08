@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-02",
+  "name": "goit-react-hw-02-feedback",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://alexeyzyukov.github.io/goit-react-hw-02/",
+  "homepage": "https://alexeyzyukov.github.io/goit-react-hw-02-feedback/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^11.2.7",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexeyzyukov/goit-react-hw-02.git"
+    "url": "git+https://github.com/alexeyzyukov/goit-react-hw-02-feedback.git"
   },
   "scripts": {
     "start": "react-scripts start",
