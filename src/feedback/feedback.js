@@ -9,17 +9,17 @@ import Statistics from './Statistics';
 
 class Feedback extends Component {
   // static defaultProps = {
-  //   Good: 0,
-  //   Neutral: 0,
-  //   Bad: 0,
+  //   good: 0,
+  //   neutral: 0,
+  //   bad: 0,
   // };
 
   constructor() {
     super();
     this.state = {
-      Good: 0,
-      Neutral: 0,
-      Bad: 0,
+      good: 0,
+      neutral: 0,
+      bad: 0,
     };
   }
 
@@ -36,28 +36,30 @@ class Feedback extends Component {
   };
 
   countTotalFeedback = () => {
-    const { Good, Neutral, Bad } = this.state;
-    return Good + Neutral + Bad;
+    console.log('Object.values(this.state): ', Object.values(this.state));
+    return Object.values(this.state).reduce((acc, value) => acc + value, 0);
+    // const { good, neutral, bad } = this.state;
+    // return good + neutral + bad;
   };
   countPositiveFeedbackPercentage = () => {
-    const { Good } = this.state;
+    const { good } = this.state;
     const total = this.countTotalFeedback();
-    return total ? Math.round((Good / total) * 100) : 0;
+    return total ? Math.round((good / total) * 100) : 0;
   };
 
-  arrayState = Object.keys(this.state);
+  // arrayState = Object.keys(this.state);
 
   render() {
-    // const total = this.countTotalFeedback();
-    // const arrFrmState = Object.keys(this.state);
-    // console.log(arrFrmState);
+    const arrayState = Object.keys(this.state);
+    const total = this.countTotalFeedback();
+    console.log('arrayState: ', arrayState);
 
     return (
       <Fragment>
         {this.props.title && <h2>{this.props.title}</h2>}
 
         <FeedbackOptions
-          arrayFromState={this.arrayState}
+          arrayFromState={arrayState}
           onClickFn={this.onBtnClick}
         />
 
@@ -70,16 +72,16 @@ class Feedback extends Component {
             ))}
         </div> */}
 
-        <Statistics
+        {/* <Statistics
           totalFeedback={this.countTotalFeedback()}
           positiveFeedback={this.countPositiveFeedbackPercentage}
           arrayFrmState={this.arrayState}
-        />
+        /> */}
 
-        {/* {total !== 0 ? (
+        {total !== 0 ? (
           <Fragment>
             <ul>
-              {arrFrmState.map(item => (
+              {arrayState.map(item => (
                 <Fragment key={item}>
                   <li className={styles.statsItem}>
                     <span className={styles.statsKind}>{item}: </span>
@@ -104,7 +106,7 @@ class Feedback extends Component {
           </Fragment>
         ) : (
           `There is no feedback`
-        )} */}
+        )}
       </Fragment>
     );
   }
