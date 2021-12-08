@@ -16,10 +16,6 @@ const Statistics = ({
           <ul className={styles.statistics}>
             {arrayFromStateEntry.map(item => (
               <Fragment key={item[0]}>
-                {/* <li className={styles.statsItem}>
-                  <span className={styles.statsKind}>{item[0]}: </span>
-                  <span className={styles.statsValue}>{item[1]}</span>
-                </li> */}
                 <tbody className={styles.table}>
                   <tr className={styles.row}>
                     <td>{item[0]}: </td>
@@ -38,7 +34,26 @@ const Statistics = ({
                 <td>{positiveFeedback} %</td>
               </tr>
             </tbody>
-            {/* <ul>
+          </ul>
+        </Fragment>
+      ) : (
+        <Notification message={message} />
+      )}
+    </div>
+  );
+};
+export default Statistics;
+
+// eslint-disable-next-line no-lone-blocks
+{
+  /* <li className={styles.statsItem}>
+                  <span className={styles.statsKind}>{item[0]}: </span>
+                  <span className={styles.statsValue}>{item[1]}</span>
+                </li> */
+}
+// eslint-disable-next-line no-lone-blocks
+{
+  /* <ul>
               <li>
                 <span>Total: </span>
                 <span>{totalFeedback}</span>
@@ -50,13 +65,5 @@ const Statistics = ({
                   <span> %</span>
                 </span>
               </li>
-            </ul> */}
-          </ul>
-        </Fragment>
-      ) : (
-        <Notification message={message} />
-      )}
-    </div>
-  );
-};
-export default Statistics;
+            </ul> */
+}
