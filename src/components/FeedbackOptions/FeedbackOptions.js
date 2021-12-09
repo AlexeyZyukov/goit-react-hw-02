@@ -1,6 +1,10 @@
 import React from 'react';
 import styles from '../feedback.module.css';
 
+const uppCase = string => {
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+};
+
 const FeedbackOptions = ({ arrayFromState, onClickFn }) => (
   <div>
     {arrayFromState.map(item => (
@@ -11,7 +15,7 @@ const FeedbackOptions = ({ arrayFromState, onClickFn }) => (
         key={item}
         onClick={onClickFn}
       >
-        {item}
+        {uppCase(item)}
       </button>
     ))}
   </div>

@@ -3,6 +3,10 @@ import { Fragment } from 'react';
 import Notification from '../Notification/notification';
 import styles from '../feedback.module.css';
 
+const uppCase = string => {
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+};
+
 const Statistics = ({
   totalFeedback,
   positiveFeedback,
@@ -18,7 +22,7 @@ const Statistics = ({
               <Fragment key={item[0]}>
                 <tbody className={styles.table}>
                   <tr className={styles.row}>
-                    <td>{item[0]}: </td>
+                    <td>{uppCase(item[0])}: </td>
                     <td>{item[1]}</td>
                   </tr>
                 </tbody>
