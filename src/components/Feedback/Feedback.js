@@ -27,13 +27,12 @@ class Feedback extends Component {
   onBtnClick = event => {
     this.setState(prevState => {
       return {
-        [event.target.textContent]: prevState[event.target.textContent] + 1,
+        //event.currentTarget.name, где name={item} в разметке кнопки FeedbackOptions
+        [event.target.name]: prevState[event.target.name] + 1,
       };
     });
-    console.log(
-      `${event.target.textContent}`,
-      this.state[event.target.textContent],
-    );
+    console.log(`${event.target.name}: `, this.state[event.currentTarget.name]);
+    console.dir(event.target.name);
   };
 
   countTotalFeedback = () => {

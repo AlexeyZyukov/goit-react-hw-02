@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './App.css';
 
 import ErrorBoundary from './bugFinder';
-import Feedback from './feedback/Feedback/Feedback';
+import Feedback from './components/Feedback/Feedback';
 
 function App() {
   return (
