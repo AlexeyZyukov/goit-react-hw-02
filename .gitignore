@@ -24,4 +24,4 @@ yarn-error.log*
 
 # fies
 *copy.*
-.*test.*
+*test.*
