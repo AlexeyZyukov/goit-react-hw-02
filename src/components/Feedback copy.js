@@ -2,97 +2,93 @@
 import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 import { Component } from 'react';
+import Section from '../Section/Section';
 
-// import { CONFIG_DATA } from './CONFIG_DATA';
-
-import styles from './feedback.module.css';
+import styles from '../feedback.module.css';
+import FeedbackOptions from '../FeedbackOptions/FeedbackOptions';
+import Statistics from '../Statistics/Statistics';
 
 class Feedback extends Component {
-  // static defaultProps = {
-  //   Good: 0,
-  //   Neutral: 0,
-  //   Bad: 0,
-  // };
+  static PropsTypes = {
+    good: PropTypes.number,
+    neutral: PropTypes.number,
+    bad: PropTypes.number,
+  };
 
   constructor(props) {
     super(props);
-    // this.state = {};
-    // CONFIG_DATA.forEach(item => {
-    //   this.state[item.key] = 0;
-    // }); //динамическое формирование state из массива данных CONFIG. Может быть использовано в дальнейшем. Позволяет динамически добавлять данные в state.
     this.state = {
-      Good: 0,
-      Neutral: 0,
-      Bad: 0,
+      good: 0,
+      neutral: 0,
+      bad: 0,
     };
   }
 
-  onBtnClick = event => {
-    this.setState({
-      [event.target.textContent]: this.state[event.target.textContent] + 1,
+  onBtnClick = param => {
+    this.setState(prevState => {
+      return {
+        [param]: prevState[param] + 1,
+      };
     });
-    console.log(
-      `${event.target.textContent}`,
-      this.state[event.target.textContent],
-    );
-    // console.log('event.currentTarget: ', event.currentTarget);
-    // console.log('event.currentTarget.textContent: ', tagretName);
   };
-  // onGoodBtnClick = () => { //prevState - учитывает предыдущее значение аргумента. Учитывает асинхронность метода setState
-  //   this.setState(prevState => {
-  //     return ({ value: prevState.value + 1 });
-  //   })
-  //   console.log('value: ', this.state.value)
-  // }
 
   countTotalFeedback = () => {
-    const { Good, Neutral, Bad } = this.state;
-    return Good + Neutral + Bad;
+    // console.log('Object.values(this.state): ', Object.values(this.state));
+    return Object.values(this.state).reduce((acc, value) => acc + value, 0);
   };
-  countPositivePercentage = () => {
-    const { Good } = this.state;
+  countPositiveFeedbackPercentage = () => {
+    const { good } = this.state;
     const total = this.countTotalFeedback();
-    return total ? Math.round((Good / total) * 100) : 0;
+    return total ? Math.round((good / total) * 100) : 0;
   };
 
   render() {
-    const total = this.countTotalFeedback();
-    const arrFrmState = Object.keys(this.state);
-
     return (
       <Fragment>
-        <div>
-          {this.props.title && <h2>{this.props.title}</h2>}
-          {/* {CONFIG_DATA.map(item => (
-            <button key={item.key} onClick={this.onBtnClick}>
-              {item.key}
-            </button> */}
-          {arrFrmState.map(item => (
-            <button key={item} onClick={this.onBtnClick}>
-              {item}
-            </button>
-          ))}
+        <div className={styles.wrapper}>
+          <Section title="Please leave feedback">
+            <FeedbackOptions
+              arrayKeysFromState={Object.keys(this.state)}
+              onClickFn={this.onBtnClick}
+            />
+          </Section>
+
+          <Section title="Statistics">
+            <Statistics
+              totalFeedback={this.countTotalFeedback()}
+              positiveFeedback={this.countPositiveFeedbackPercentage()}
+              arrayFromStateEntry={Object.entries(this.state)}
+              message="There is no feedback"
+            />
+          </Section>
         </div>
-        {total !== 0 ? (
+      </Fragment>
+    );
+  }
+}
+
+export default Feedback;
+
+// onBtnClick = event => {
+//   this.setState(prevState => {
+//     return {
+//       //event.target.name, где name={item} в разметке кнопки FeedbackOptions
+//       [event.target.name]: prevState[event.target.name] + 1,
+//     };
+//   });
+//   console.log(`${event.target.name}: `, this.state[event.currentTarget.name]);
+//   console.dir(event.target.name);
+// };
+// eslint-disable-next-line no-lone-blocks
+//====================================
+/* {total !== 0 ? (
           <Fragment>
             <ul>
-              {/* {CONFIG_DATA.map(item => (
-                <Fragment key={item.key}>
-                  <li className={styles.statsItem}>
-                    <span className={styles.statsKind}>{item.key}: </span>
-                    <span className={styles.statsValue}>
-                      {this.state[item.key]}
-                    </span>
-                  </li>
-                </Fragment>
-              ))} */}
-              {arrFrmState.map(item => (
+              {arrayState.map(item => (
                 <Fragment key={item}>
                   <li className={styles.statsItem}>
                     <span className={styles.statsKind}>{item}: </span>
-                    <span className={styles.statsValue}>
-                      {this.state[item]}
-                    </span>
+                    <span className={styles.statsValue}>{this.state[item]}</span>
                   </li>
                 </Fragment>
               ))}
@@ -104,7 +100,7 @@ class Feedback extends Component {
                 <li>
                   <span>Positive feedback: </span>
                   <span>
-                    {this.countPositivePercentage()}
+                    {this.countPositiveFeedbackPercentage()}
                     <span> %</span>
                   </span>
                 </li>
@@ -113,24 +109,4 @@ class Feedback extends Component {
           </Fragment>
         ) : (
           `There is no feedback`
-        )}
-      </Fragment>
-    );
-  }
-}
-
-console.dir(Feedback);
-
-// function Statistics(props) {
-//   const { id, kind, value } = props;
-//   return (
-//     <ul className={styles.statList} key={id}>
-//       <li className={styles.statItem}>
-//         <span className={styles.statKind}>{kind}</span>
-//         <span className={styles.statValue}>{value}</span>
-//       </li>
-//     </ul>
-//   );
-// }
-
-export default Feedback;
+        )} */

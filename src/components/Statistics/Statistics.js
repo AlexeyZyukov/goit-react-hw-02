@@ -17,7 +17,7 @@ const Statistics = ({
     <div>
       {totalFeedback !== 0 ? (
         <Fragment>
-          <div className={styles.statistics}>
+          <table className={styles.statistics}>
             {arrayFromStateEntry.map(item => (
               <Fragment key={item[0]}>
                 <tbody className={styles.table}>
@@ -38,7 +38,7 @@ const Statistics = ({
                 <td>{positiveFeedback} %</td>
               </tr>
             </tbody>
-          </div>
+          </table>
         </Fragment>
       ) : (
         <Notification message={message} />
@@ -47,27 +47,3 @@ const Statistics = ({
   );
 };
 export default Statistics;
-
-// eslint-disable-next-line no-lone-blocks
-{
-  /* <li className={styles.statsItem}>
-                  <span className={styles.statsKind}>{item[0]}: </span>
-                  <span className={styles.statsValue}>{item[1]}</span>
-                </li> */
-}
-// eslint-disable-next-line no-lone-blocks
-{
-  /* <ul>
-              <li>
-                <span>Total: </span>
-                <span>{totalFeedback}</span>
-              </li>
-              <li>
-                <span>Positive feedback: </span>
-                <span>
-                  {positiveFeedback}
-                  <span> %</span>
-                </span>
-              </li>
-            </ul> */
-}

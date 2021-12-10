@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 import { Component } from 'react';
@@ -24,19 +23,15 @@ class Feedback extends Component {
     };
   }
 
-  onBtnClick = event => {
+  onBtnClick = param => {
     this.setState(prevState => {
       return {
-        //event.currentTarget.name, где name={item} в разметке кнопки FeedbackOptions
-        [event.target.name]: prevState[event.target.name] + 1,
+        [param]: prevState[param] + 1,
       };
     });
-    console.log(`${event.target.name}: `, this.state[event.currentTarget.name]);
-    console.dir(event.target.name);
   };
 
   countTotalFeedback = () => {
-    console.log('Object.values(this.state): ', Object.values(this.state));
     return Object.values(this.state).reduce((acc, value) => acc + value, 0);
   };
   countPositiveFeedbackPercentage = () => {
@@ -51,7 +46,7 @@ class Feedback extends Component {
         <div className={styles.wrapper}>
           <Section title="Please leave feedback">
             <FeedbackOptions
-              arrayFromState={Object.keys(this.state)}
+              arrayKeysFromState={Object.keys(this.state)}
               onClickFn={this.onBtnClick}
             />
           </Section>
@@ -71,36 +66,3 @@ class Feedback extends Component {
 }
 
 export default Feedback;
-
-// eslint-disable-next-line no-lone-blocks
-{
-  /* {total !== 0 ? (
-          <Fragment>
-            <ul>
-              {arrayState.map(item => (
-                <Fragment key={item}>
-                  <li className={styles.statsItem}>
-                    <span className={styles.statsKind}>{item}: </span>
-                    <span className={styles.statsValue}>{this.state[item]}</span>
-                  </li>
-                </Fragment>
-              ))}
-              <ul>
-                <li>
-                  <span>Total: </span>
-                  <span>{total}</span>
-                </li>
-                <li>
-                  <span>Positive feedback: </span>
-                  <span>
-                    {this.countPositiveFeedbackPercentage()}
-                    <span> %</span>
-                  </span>
-                </li>
-              </ul>
-            </ul>
-          </Fragment>
-        ) : (
-          `There is no feedback`
-        )} */
-}
